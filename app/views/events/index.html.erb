@@ -1,4 +1,7 @@
-<% for event in @events %>
-    <td><%= link_to event.title, :action => "show", :id => event %></td>
-  </tr>
-<% end %>
+<h1>Events</h1>
+
+<ul>
+  <% for event in @events %>
+    <li><%= link_to event.title, :action => "show", :id => event %>
+  <% end %>
+</ul>

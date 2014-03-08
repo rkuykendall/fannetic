@@ -9,11 +9,10 @@ class EventsController < ApplicationController
   
   def new
     @event = Event.new
-    @teams = Team.find(:all)
   end
   
   def create
-    @event = Event.new(params[:event].permit(:title, :text))
+    @event = Event.new(params[:event].permit(:title, :location, :start, :end, :team_id, :body))
   end
   
   def edit
@@ -21,13 +20,21 @@ class EventsController < ApplicationController
   end
   
   def update
-  	@post = Post.find(params[:id])
-   
-  	if @post.update(params[:post].permit(:title, :text))
-  		redirect_to @post
+  	@event = Event.find(params[:id])
+  
+  	if @event.update(params[:event].permit(:title, :location, :start, :end, :team_id, :body))
+  		redirect_to @event
   	else
   		render 'edit'
   	end
   end
   
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+
+    redirect_to events_path
+  end
 end
+
+
