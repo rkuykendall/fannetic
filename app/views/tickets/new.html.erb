@@ -1,2 +1,9 @@
-<h1>Tickets#new</h1>
-<p>Find me in app/views/tickets/new.html.erb</p>
+<h1>New Ticket for <%= @event.title %></h1>
+
+<%= form_for :ticket, url: team_event_tickets_path(@team,@event) do |f| %>
+  <p>Credit card information here</p>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

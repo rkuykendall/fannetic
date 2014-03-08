@@ -3,9 +3,10 @@
 <h2>Events</h1>
 <ul>
   <% for event in @events %>
-    <li><%= link_to event.title, team_events_path(@team) %>
+    <li><%= link_to event.title, team_event_path(@team,event) %>
   <% end %>
 </ul>
+<%= link_to "Create event", new_team_event_path(@team) %>
 
 
 <h2>Fans</h2>
@@ -14,3 +15,9 @@
     <li><%= fan.first_name %>
   <% end %>
 </ul>
+
+<% if @follow != nil %>
+  <%= button_to "Unfollow", team_follow_path(@team,@follow), method: :delete %>
+<% else %>
+  <%= button_to "Follow", team_follows_path(@team), method: :post %>
+<% end %>

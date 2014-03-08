@@ -1,38 +1,33 @@
 Fannetic::Application.routes.draw do
-  get "loves/new"
-  get "loves/create"
-  get "loves/destroy"
-  get "tickets/new"
-  get "tickets/create"
-  get "tickets/destroy"
-  get "tickets/index"
-  get "tickets/show"
-  get "teams/new"
-  get "teams/create"
-  get "teams/update"
-  get "teams/edit"
-  get "teams/destroy"
-  get "teams/index"
-  get "teams/show"
+  # Authentication
   devise_for :fans, :controllers => { :omniauth_callbacks => "fans/omniauth_callbacks" }
   devise_scope :fan do
      get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
-  resources :fans, only: [] do
-    resources :tickets
-  end
   
-  resources :teams do
-    resources :events
+  # fan/1/tickets
+  resources :fans, only: [:show] do
+    resources :tickets, only: [:index]
   end
-  resources :events
+
+  # teams/1/events/1/tickets/1
+  resources :teams do
+    resources :follows, only: [:create, :destroy]
+    
+    resources :events do
+      resources :tickets
+    end
+  end
+
+  # List all events on /
+  resources :events, only: [:index]
+  root 'events#index'
 
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'events#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -5,16 +5,20 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @team = Team.find(params[:team_id])
   end
   
   def new
     @event = Event.new
+    @team = Team.find(params[:team_id])
   end
   
   def create
-    @event = Event.new(params[:event].permit(:title, :location, :start, :end, :team_id, :body))
+    @team = Team.find(params[:team_id])
+    @event = Event.new(params[:event].permit(:title, :location, :start, :end, :body))
+    @event.team_id = @team.id
     @event.save
-    redirect_to @event
+    redirect_to team_event_path(@team,@event)
   end
   
   def edit

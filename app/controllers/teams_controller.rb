@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @events = @team.events
     @fans = @team.fans
+    @follow = Follow.find_by_fan_id(current_fan)
   end
   
   def new

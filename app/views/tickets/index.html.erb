@@ -1,2 +1,7 @@
-<h1>Tickets#index</h1>
-<p>Find me in app/views/tickets/index.html.erb</p>
+<h1>Tickets</h1>
+
+<ul>
+  <% for ticket in @tickets %>
+    <li><%= link_to ticket.event.title, team_event_ticket_path(ticket.event.team, ticket.event, ticket) %>
+  <% end %>
+</ul>

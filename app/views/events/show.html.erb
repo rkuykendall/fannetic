@@ -1,0 +1,9 @@
+<h1><%= @event.title %> for <%= link_to @team.title, team_path(@team) %></h1>
+
+<p>Times: <%= @event.start %> - <%= @event.end %></p>
+
+<p>Location: <%= @event.location %></p>
+
+<p>Body: <%= @event.body %></p>
+
+<p><%= link_to "Purchase ticket", new_team_event_ticket_path(@team,@event) %></p>

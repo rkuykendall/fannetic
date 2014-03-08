@@ -2,6 +2,6 @@
 
 <ul>
   <% for event in @events %>
-    <li><%= link_to event.title, :action => "show", :id => event %>
+    <li><%= link_to event.title, team_event_path(event.team, event) %>
   <% end %>
 </ul>
