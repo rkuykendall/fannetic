@@ -1,4 +1,4 @@
-class LovesController < ApplicationController
+class FollowsController < ApplicationController
   def new
   end
 

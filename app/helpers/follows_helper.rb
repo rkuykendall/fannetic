@@ -1,2 +1,2 @@
-module LovesHelper
+module FollowsHelper
 end
