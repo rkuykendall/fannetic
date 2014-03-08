@@ -2,13 +2,18 @@
 <html>
 <head>
   <title>Fannetic</title>
+  <link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+  
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= link_to "Sign in with Facebook", fan_omniauth_authorize_path(:facebook) %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>

@@ -1,5 +1,17 @@
 Fannetic::Application.routes.draw do
+  devise_for :fans, :controllers => { :omniauth_callbacks => "fans/omniauth_callbacks" }
+  devise_scope :fan do
+     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+  resources :fans, only: [] do
+    resources :tickets
+  end
+  
+  resources :teams do
+    resources :events
+  end
   resources :events
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
