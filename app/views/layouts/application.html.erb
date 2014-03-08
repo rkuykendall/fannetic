@@ -9,7 +9,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= link_to "Sign in with Facebook", fan_omniauth_authorize_path(:facebook) %>
+  <ul>
+    <li><%= link_to 'Fannetic', root_url %>
+    <% if fan_signed_in? %>
+      <li><%= current_fan.first_name %>
+      <li><%= link_to "Logout", :destroy_user_session %>
+    <% else %>
+      <li><%= link_to "Sign in with Facebook", fan_omniauth_authorize_path(:facebook) %>
+    <% end %>
+  </ul>
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308025000) do
+ActiveRecord::Schema.define(version: 20140308035549) do
+
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.string   "body"
+    t.string   "location"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["team_id"], name: "index_events_on_team_id"
 
   create_table "fans", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -46,5 +59,31 @@ ActiveRecord::Schema.define(version: 20140308025000) do
 
   add_index "fans", ["email"], name: "index_fans_on_email", unique: true
   add_index "fans", ["reset_password_token"], name: "index_fans_on_reset_password_token", unique: true
+
+  create_table "loves", force: true do |t|
+    t.integer  "fan_id"
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "loves", ["fan_id"], name: "index_loves_on_fan_id"
+  add_index "loves", ["team_id"], name: "index_loves_on_team_id"
+
+  create_table "teams", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tickets", force: true do |t|
+    t.integer  "fan_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tickets", ["event_id"], name: "index_tickets_on_event_id"
+  add_index "tickets", ["fan_id"], name: "index_tickets_on_fan_id"
 
 end

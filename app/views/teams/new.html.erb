@@ -1,0 +1,12 @@
+<h1>New Team</h1>
+
+<%= form_for :team, url: teams_path do |f| %>
+  <div>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

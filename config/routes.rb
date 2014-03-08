@@ -1,4 +1,19 @@
 Fannetic::Application.routes.draw do
+  get "loves/new"
+  get "loves/create"
+  get "loves/destroy"
+  get "tickets/new"
+  get "tickets/create"
+  get "tickets/destroy"
+  get "tickets/index"
+  get "tickets/show"
+  get "teams/new"
+  get "teams/create"
+  get "teams/update"
+  get "teams/edit"
+  get "teams/destroy"
+  get "teams/index"
+  get "teams/show"
   devise_for :fans, :controllers => { :omniauth_callbacks => "fans/omniauth_callbacks" }
   devise_scope :fan do
      get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
