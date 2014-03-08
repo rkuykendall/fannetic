@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308035549) do
+ActiveRecord::Schema.define(version: 20140308173043) do
 
   create_table "events", force: true do |t|
     t.string   "title"
@@ -60,15 +60,15 @@ ActiveRecord::Schema.define(version: 20140308035549) do
   add_index "fans", ["email"], name: "index_fans_on_email", unique: true
   add_index "fans", ["reset_password_token"], name: "index_fans_on_reset_password_token", unique: true
 
-  create_table "loves", force: true do |t|
+  create_table "follows", force: true do |t|
     t.integer  "fan_id"
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "loves", ["fan_id"], name: "index_loves_on_fan_id"
-  add_index "loves", ["team_id"], name: "index_loves_on_team_id"
+  add_index "follows", ["fan_id"], name: "index_follows_on_fan_id"
+  add_index "follows", ["team_id"], name: "index_follows_on_team_id"
 
   create_table "teams", force: true do |t|
     t.string   "title"

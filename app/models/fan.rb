@@ -1,5 +1,5 @@
 class Fan < ActiveRecord::Base
-  has_many :teams, :through => :loves
+  has_many :teams, :through => :follows
   has_many :events, :through => :tickets
   
   # Include default devise modules. Others available are:

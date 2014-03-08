@@ -5,6 +5,8 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @events = @team.events
+    @fans = @team.fans
   end
   
   def new
@@ -35,7 +37,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @team.destroy
 
-    redirect_to events_path
+    redirect_to teams_path
   end
 
 end

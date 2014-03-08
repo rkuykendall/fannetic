@@ -1,2 +1,16 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<h1><%= @team.title %></h1>
+
+<h2>Events</h1>
+<ul>
+  <% for event in @events %>
+    <li><%= link_to event.title, team_events_path(@team) %>
+  <% end %>
+</ul>
+
+
+<h2>Fans</h2>
+<ul>
+  <% for fan in @fans %>
+    <li><%= fan.first_name %>
+  <% end %>
+</ul>

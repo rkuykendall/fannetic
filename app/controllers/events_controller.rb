@@ -13,6 +13,8 @@ class EventsController < ApplicationController
   
   def create
     @event = Event.new(params[:event].permit(:title, :location, :start, :end, :team_id, :body))
+    @event.save
+    redirect_to @event
   end
   
   def edit
