@@ -11,14 +11,13 @@
 <body>
   <ul>
     <li><%= link_to 'Fannetic', root_url %>
-    <li><%= link_to "Events", root_url %>
-    <li><%= link_to "Teams", teams_path %>
   </ul>
-    
+
   <ul>
     <% if fan_signed_in? %>
       <li><%= current_fan.first_name %>
       <li><%= link_to "Tickets", fan_tickets_path(current_fan) %>
+      <li><%= link_to "Teams", fan_tickets_path(current_fan) %>
       <li><%= link_to "Logout", :destroy_user_session %>
     <% else %>
       <li><%= link_to "Sign in with Facebook", fan_omniauth_authorize_path(:facebook) %>
@@ -30,5 +29,9 @@
 
   <%= yield %>
 
+  <div id="footer">
+    About and contact.
+  </div>
+  
 </body>
 </html>

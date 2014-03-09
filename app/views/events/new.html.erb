@@ -1,36 +1,7 @@
 <h1>New Event</h1>
 <%= form_for :event, url: team_events_path(@team) do |f| %>
-  <div>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-
-  <div>
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-
-  <div>
-    <%= f.label :start %><br />
-    <%= f.datetime_select :start, :ampm => true, :minute_step => 15  %>
-  </div>
-
-  <div>
-    <%= f.label :end %><br />
-    <%= f.datetime_select :end, :ampm => true, :minute_step => 15  %>
-  </div>
-
-  <% if false %>
-  # <div>
-  #   <%= f.label :team_id  %><br />
-  #   <%= f.collection_select :team_id, Team.order(:title),:id,:title, include_blank: true %>
-  # </div>
-  <% end %>
-
-  <div>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </div>
+  
+  <%= render :partial => "form", :locals => {:f => f} %>
 
   <div>
     <%= f.submit %>

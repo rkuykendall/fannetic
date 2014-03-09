@@ -7,3 +7,5 @@
 <p>Body: <%= @event.body %></p>
 
 <p><%= link_to "Purchase ticket", new_team_event_ticket_path(@team,@event) %></p>
+
+<p><%= link_to "Edit", edit_team_event_path(@team,@event) %></p>

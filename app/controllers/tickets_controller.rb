@@ -12,8 +12,27 @@ class TicketsController < ApplicationController
     @ticket.event_id = @event.id
     @ticket.fan_id = current_fan.id
     @ticket.save
-    flash[:notice] = "Ticket successfully created"
+
+    customer = Stripe::Customer.create(
+      :email => current_user.email,
+      :card  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => @event.price,
+      :description => 'Ticket '+@ticket.id,
+      :currency    => 'usd'
+    )
+    
+    flash[:notice] = "Ticket successfully created!"
     redirect_to fan_tickets_path(current_fan)
+
+  rescue Stripe::CardError => e
+    @ticket.destroy
+    
+    flash[:error] = e.message
+    redirect_to team_event_path(@team, @event)
   end
 
   def destroy

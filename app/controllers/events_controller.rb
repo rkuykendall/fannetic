@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
     @events = Event.find(:all)
+    @teams = Team.find(:all)
   end
 
   def show
@@ -15,7 +16,7 @@ class EventsController < ApplicationController
   
   def create
     @team = Team.find(params[:team_id])
-    @event = Event.new(params[:event].permit(:title, :location, :start, :end, :body))
+    @event = Event.new(params[:event].permit(:title, :location, :start, :end, :body, :price))
     @event.team_id = @team.id
     @event.save
     redirect_to team_event_path(@team,@event)
@@ -23,13 +24,15 @@ class EventsController < ApplicationController
   
   def edit
     @event = Event.find(params[:id])
+    @team = @event.team
   end
   
   def update
   	@event = Event.find(params[:id])
+    @team = @event.team
   
-  	if @event.update(params[:event].permit(:title, :location, :start, :end, :team_id, :body))
-  		redirect_to @event
+  	if @event.update(params[:event].permit(:title, :location, :start, :end, :body, :price))
+  		redirect_to team_event_path(@team,@event)
   	else
   		render 'edit'
   	end

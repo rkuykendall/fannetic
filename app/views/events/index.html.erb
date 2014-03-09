@@ -1,7 +1,13 @@
-<h1>Events</h1>
+<h1>Watch your hometown team with other fans in NYC.</h1>
 
 <ul>
   <% for event in @events %>
-    <li><%= link_to event.title, team_event_path(event.team, event) %>
+    <li><%= link_to event.title, team_event_path(event.team, event) %> for <%= link_to event.team.title, team_path(event.team) %>
+  <% end %>
+</ul>
+
+<ul>
+  <% for team in @teams %>
+    <li><%= link_to team.title, team_path(team) %>
   <% end %>
 </ul>
