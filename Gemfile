@@ -47,4 +47,5 @@ end
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'foundation-rails'
 

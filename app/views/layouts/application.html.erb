@@ -1,37 +1,54 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Fannetic</title>
-  <link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
-  
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <ul>
-    <li><%= link_to 'Fannetic', root_url %>
-  </ul>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <ul>
-    <% if fan_signed_in? %>
-      <li><%= current_fan.first_name %>
-      <li><%= link_to "Tickets", fan_tickets_path(current_fan) %>
-      <li><%= link_to "Teams", fan_tickets_path(current_fan) %>
-      <li><%= link_to "Logout", :destroy_user_session %>
-    <% else %>
-      <li><%= link_to "Sign in with Facebook", fan_omniauth_authorize_path(:facebook) %>
-    <% end %>
-  </ul>
+    <title><%= content_for?(:title) ? yield(:title) : "Fannetic" %></title>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-  <%= yield %>
+  <body>
+    
+    <!-- Navigation -->
+    <div class="row">
+      <div class="small-12 columns">
+        <%= link_to image_tag("logo.png"), root_url %>
+    
+        <ul>
+          <% if fan_signed_in? %>
+            <li><%= current_fan.first_name %>
+            <li><%= link_to "Tickets", fan_tickets_path(current_fan) %>
+            <li><%= link_to "Teams", fan_tickets_path(current_fan) %>
+            <li><%= link_to "Logout", :destroy_user_session %>
+          <% else %>
+            <li><%= link_to "Sign in with Facebook", fan_omniauth_authorize_path(:facebook) %>
+          <% end %>
+        </ul>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+    </div>
 
-  <div id="footer">
-    About and contact.
-  </div>
-  
-</body>
+    <!-- Main -->
+    <div class="row">
+      <div class="small-12">
+        <div class="columns">
+          <%= yield %>    
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer" class="row">
+      <div class="small-12 columns">
+          About and contact.  
+      </div>
+    </div>    
+
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
