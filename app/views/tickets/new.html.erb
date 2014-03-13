@@ -1,16 +1,16 @@
-<h1>New Ticket for <%= @event.title %></h1>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>New Ticket</h1>
+    <h3 class="subheader"><%= @event.team.title %> &mdash; <%= @event.title %></h3>
 
-<%= form_tag team_event_tickets_path(@team,@event) do %>
-  <article>
-    <label class="amount">
-      <span>Amount: <%= number_to_currency(@event.price/100) %></span>
-    </label>
-  </article>
-
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Ticket for <%= @event.title %>"
-          data-amount="<%= @event.price %>"
-          data-name="Fannetic"
-          data-email="<%= current_fan.email %>"></script>
-<% end %>
+    <%= form_tag team_event_tickets_path(@team,@event) do %>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Ticket for <%= @event.title %>"
+              data-amount="<%= @event.price %>"
+              data-name="Fannetic"
+              data-label="Pay <%= number_to_currency(@event.price/100) %> with Card"
+              data-email="<%= current_fan.email %>"></script>
+    <% end %>
+  </div>
+</div>

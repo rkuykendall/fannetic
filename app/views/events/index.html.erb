@@ -18,9 +18,9 @@
             From <strong><%= event.start.to_s(:time) %></strong> to <strong><%= event.end.to_s(:time) %></strong>
           </li>
           <li class="bullet-item">You get <strong>open bar during first half</strong></li>
-          <li class="bullet-item">Hosted by <strong><%= event.location %></strong> in Midtown</li>
+          <li class="bullet-item">Hosted by <strong><%= event.location %></strong></li>
           <li class="price"><%= number_to_currency(event.price/100) %></li>
-          <a href="new_team_event_ticket_path(event.team,event)"><li class="cta-button"><h3>Get Tickets</h3></li></a>
+          <a href="<%= new_team_event_ticket_path(event.team,event) %>"><li class="cta-button"><h3>Get Tickets</h3></li></a>
         </ul>
       </div>
     <% end %>

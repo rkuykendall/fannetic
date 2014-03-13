@@ -27,17 +27,17 @@
 .pricing-table a:active .cta-button h3,
 .pricing-table a:visited .cta-button h3 {
   color: $price-cta-color;
-  text-shadow: rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
 }
 
 #footer{
   padding: 30px inherit;  
   
-  h2 {
+  h1,h2,h3 {
     color: white;    
   }
   p {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.65);
   }
 }
 #not-footer {
@@ -50,7 +50,7 @@
   color: white;
   text-align: center;
   padding: 30px 15px;
-  margin: 15px inherit;
+  margin-bottom: 20px;
   border: 0px solid #9a2e22;
   border-width: 8px 0 2px 0;
 

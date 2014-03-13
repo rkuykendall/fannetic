@@ -49,11 +49,23 @@
     </div>
 
     <% if notice %>
-      <p id="notice"><%= notice %></p>
+      <div id="notice" class="alert-box secondary">
+        <div class="row">
+          <div class="small-12 columns">
+            <%= notice %>
+          </div>
+        </div>
+      </div>
     <% end %>
 
     <% if alert %>    
-      <p class="alert"><%= alert %></p>
+      <div id="alert" class="alert-box alert">
+        <div class="row">
+          <div class="small-12 columns">
+            <%= alert %>
+          </div>
+        </div>
+      </div>
     <% end %>
 
     <%= yield %>    
@@ -63,10 +75,11 @@
   <!-- Footer -->
   <div class="row" id="footer">
     <div class="small-12 columns">
-        <h2>At Fannetic, we love sports more than anything.</h2>
+        <h3>At Fannetic, we love sports more than anything.</h3>
         <p>However after moving to NYC from Chicago and San Francisco, we missed our teams. Sure we could catch the games on TV, or at some nearby sports bar, but we really missed the atmosphere. There is nothing like cheering with your friends and like-minded fans around you.</p>
 
-        <p>That’s why we created Fannetic. To share the pain and the glory, and have a great time along the way. We are recreating the stadium effect by connecting all types of sports fans, so let us know if you have an event that you need to see with your fellow fans.</p>
+        <h3>That’s why we created Fannetic.</h3>
+        <p>To share the pain and the glory, and have a great time along the way. We are recreating the stadium effect by connecting all types of sports fans, so let us know if you have an event that you need to see with your fellow fans.</p>
     </div>
   </div>    
 

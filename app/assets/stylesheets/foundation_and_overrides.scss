@@ -20,6 +20,7 @@
 // Since the typical default browser font-size is 16px, that makes the calculation for grid size.
 // If you want your base font-size to be different and not have it affect the grid breakpoints,
 // set $rem-base to $base-font-size and make sure $base-font-size is a px value.
+// $base-font-size: 100%;
 $base-font-size: 105%;
 
 // The $base-line-height is 100% while $base-font-size is 150%
@@ -126,7 +127,9 @@ $body-font-family: 'Source Sans Pro', "Helvetica Neue", "Helvetica", Helvetica, 
 // $header-font-style: normal;
 // $header-font-color: #222;
 // $header-line-height: 1.4;
+$header-line-height: 1.15;
 // $header-top-margin: .2rem;
+$header-top-margin: 1rem;
 // $header-bottom-margin: .5rem;
 // $header-text-rendering: optimizeLegibility;
 
@@ -843,6 +846,7 @@ $price-item-color: #777;
 $price-item-font-size: rem-calc(16);
 // $price-item-weight: normal;
 // $price-item-bottom-border: dotted 1px #ddd;
+$price-item-line-height: 1.4;
 
 // We use these to control the CTA area styles
 // $price-cta-bg: #fff;
@@ -1169,6 +1173,7 @@ $price-cta-padding: rem-calc(10);
 // $topbar-link-color-active-hover: #fff;
 // $topbar-link-weight: normal;
 // $topbar-link-font-size: rem-calc(13);
+$topbar-link-font-size: rem-calc(14);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg-hover: #272727;
 // $topbar-link-bg-active: $primary-color;

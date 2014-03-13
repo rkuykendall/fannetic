@@ -1,7 +1,68 @@
-<h1>Tickets</h1>
+<style>
+  .ticket {
+    background-color: #f9f9f9;
+    outline: 1px solid #ddd;
+    padding: 1rem;
+    padding-bottom: 0;
+    margin: 10px 0px;
+    line-height: 1.15rem;
+  }
+  .ticket h1 {
+    color: #f9f9f9;
+    text-shadow: 2px 2px 0px #ccc;
+    font-weight: 900;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+  }
+  .ticket h5 {
+    font-weight: 900;
+    border: dashed 2px #ddd;
+    border-width: 2px 0 2px 0;
+    padding: 1rem 0;
+    margin: 1rem;
+  }
+  .ticket .line {
+    margin-bottom: 1rem;
+  }
+  .ticket .button {
+    background-color: transparent;
+    color: #666;
+    font-weight: 900;
+    border: 2px solid #999;
+  } 
+</style>
 
-<ul>
-  <% for ticket in @tickets %>
-    <li><%= link_to ticket.event.title, team_event_ticket_path(ticket.event.team, ticket.event, ticket) %>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Tickets</h1>
+
+    <div class="row">
+      <% for ticket in @tickets %>
+      <% event = ticket.event %>
+      <% team = event.team %>
+        <div class="small-12 medium-6 large-4 columns">
+          <div class="ticket text-center">
+            <div class="row">
+              <div class="small-12 columns">
+                <h1>ADMIT 1</h1>
+                <h5><%= event.team.title %>
+                <%= event.title %></h5>
+              </div>
+              <div class="small-12 columns line">
+                <%= event.start.strftime("%B #{event.start.day.ordinalize}") %>
+                from <strong><%= event.start.to_s(:time) %></strong>
+                to <strong><%= event.end.to_s(:time) %></strong>
+              </div>
+              <div class="small-12 columns line">Hosted by <strong><%= event.location %></strong></div>
+              <div class="small-12 columns line"><strong>Open bar during first half</strong></div>
+              <!--
+                <div class="small-12 columns"><%= link_to 'View Ticket', team_event_ticket_path(team,event,ticket), :class => 'button expand' %></div>
+              -->
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
