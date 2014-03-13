@@ -20,7 +20,7 @@
 // Since the typical default browser font-size is 16px, that makes the calculation for grid size.
 // If you want your base font-size to be different and not have it affect the grid breakpoints,
 // set $rem-base to $base-font-size and make sure $base-font-size is a px value.
-// $base-font-size: 100%;
+$base-font-size: 105%;
 
 // The $base-line-height is 100% while $base-font-size is 150%
 // $base-line-height: 150%;
@@ -41,8 +41,12 @@
 
 // We use these to control various global styles
 // $body-bg: #fff;
+$body-bg: #2c3e50;
+$body-bg-real: white; // #ecf0f1;
+
 // $body-font-color: #222;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: 'Source Sans Pro', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -791,6 +795,7 @@
 
 // We use this to control the border color
 // $price-table-border: solid 1px #ddd;
+$price-table-border: solid 1px #333;
 
 // We use this to control the bottom margin of the pricing table
 // $price-table-margin-bottom: rem-calc(20);
@@ -800,12 +805,15 @@
 // $price-title-padding: rem-calc(15 20);
 // $price-title-align: center;
 // $price-title-color: #eee;
+$price-title-color: white;
 // $price-title-weight: normal;
+$price-title-weight: 600;
 // $price-title-size: rem-calc(16);
+$price-title-size: rem-calc(18);
 // $price-title-font-family: $body-font-family;
 
 // We use these to control the price styles
-// $price-money-bg: #f6f6f6  ;
+// $price-money-bg: #f6f6f6;
 // $price-money-padding: rem-calc(15 20);
 // $price-money-align: center;
 // $price-money-color: #333;
@@ -817,25 +825,32 @@
 // We use these to control the description styles
 // $price-bg: #fff;
 // $price-desc-color: #777;
+$price-desc-color: black;
 // $price-desc-padding: rem-calc(15);
 // $price-desc-align: center;
 // $price-desc-font-size: rem-calc(12);
+$price-desc-font-size: rem-calc(16);
 // $price-desc-weight: normal;
 // $price-desc-line-height: 1.4;
 // $price-desc-bottom-border: dotted 1px #ddd;
 
 // We use these to control the list item styles
 // $price-item-color: #333;
+$price-item-color: #777;
 // $price-item-padding: rem-calc(15);
 // $price-item-align: center;
 // $price-item-font-size: rem-calc(14);
+$price-item-font-size: rem-calc(16);
 // $price-item-weight: normal;
 // $price-item-bottom-border: dotted 1px #ddd;
 
 // We use these to control the CTA area styles
 // $price-cta-bg: #fff;
+$price-cta-bg: #008cba;
+$price-cta-color: white;
 // $price-cta-align: center;
 // $price-cta-padding: rem-calc(20 20 0);
+$price-cta-padding: rem-calc(10);
 
 // Progress Meters
 

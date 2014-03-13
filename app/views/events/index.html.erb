@@ -1,13 +1,27 @@
-<h1>Watch your hometown team with other fans in NYC.</h1>
 
-<ul>
-  <% for event in @events %>
-    <li><%= link_to event.title, team_event_path(event.team, event) %> for <%= link_to event.team.title, team_path(event.team) %>
-  <% end %>
-</ul>
 
-<ul>
-  <% for team in @teams %>
-    <li><%= link_to team.title, team_path(team) %>
-  <% end %>
-</ul>
+<!--<div id="slogan" class="twelve columns">
+  <h2>Watch the game wherever you are, <br />with fans of your favorite team.</h2>
+</div>-->
+
+<div id="slogan" class="twelve columns">
+  <h2>Watch games with other fans, wherever you are.</h2>
+</div>
+
+  <div class="row">
+    <% @events.each.with_index do |event,index| %>
+      <div class="event small-12 medium-6 large-4 columns">
+        <ul class="pricing-table">
+          <li class="title"><%= event.team.title %></li>
+          <li class="description"><%= event.title %> on <%= event.start.strftime("%B #{event.start.day.ordinalize}") %></li>
+          <li class="bullet-item">
+            From <strong><%= event.start.to_s(:time) %></strong> to <strong><%= event.end.to_s(:time) %></strong>
+          </li>
+          <li class="bullet-item">You get <strong>open bar during first half</strong></li>
+          <li class="bullet-item">Hosted by <strong><%= event.location %></strong> in Midtown</li>
+          <li class="price"><%= number_to_currency(event.price/100) %></li>
+          <a href="new_team_event_ticket_path(event.team,event)"><li class="cta-button"><h3>Get Tickets</h3></li></a>
+        </ul>
+      </div>
+    <% end %>
+  </div>

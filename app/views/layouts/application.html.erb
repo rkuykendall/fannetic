@@ -6,48 +6,69 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "Fannetic" %></title>
 
+    <!-- TODO: Trim this font list. -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application" %>
+    
     <%= javascript_include_tag "vendor/modernizr" %>
-    <%= csrf_meta_tags %>
+    <%= csrf_meta_tags %>    
   </head>
 
   <body>
     
-    <!-- Navigation -->
-    <div class="row">
-      <div class="small-12 columns">
-        <%= link_to image_tag("logo.png"), root_url %>
-    
-        <ul>
-          <% if fan_signed_in? %>
-            <li><%= current_fan.first_name %>
-            <li><%= link_to "Tickets", fan_tickets_path(current_fan) %>
-            <li><%= link_to "Teams", fan_tickets_path(current_fan) %>
-            <li><%= link_to "Logout", :destroy_user_session %>
-          <% else %>
-            <li><%= link_to "Sign in with Facebook", fan_omniauth_authorize_path(:facebook) %>
-          <% end %>
-        </ul>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
-    </div>
+  <div id="not-footer">
 
-    <!-- Main -->
-    <div class="row">
-      <div class="small-12">
-        <div class="columns">
-          <%= yield %>    
+    <!-- Navigation -->
+    <div id="nav">
+      <div class="row">
+        <div class="small-12 columns">
+          <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+              <li class="name">
+                <h1><%= link_to 'Fannetic', root_path %></h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+            </ul>
+
+            <section class="top-bar-section">
+              <ul class="left">
+                <% if fan_signed_in? %>
+                  <li><%= link_to current_fan.first_name+"'s Tickets", fan_tickets_path(current_fan) %>
+                <% else %>
+                  <li><%= link_to "Sign in with Facebook", fan_omniauth_authorize_path(:facebook) %>
+                <% end %>
+              </ul>
+
+              <ul class="right">
+                <li><%= link_to("Logout", :destroy_user_session) if fan_signed_in? %>
+              </ul>
+            </section>
+          </nav>
         </div>
       </div>
     </div>
+
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>    
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>    
     
-    <!-- Footer -->
-    <div id="footer" class="row">
-      <div class="small-12 columns">
-          About and contact.  
-      </div>
-    </div>    
+  </div>
+
+  <!-- Footer -->
+  <div class="row" id="footer">
+    <div class="small-12 columns">
+        <h2>At Fannetic, we love sports more than anything.</h2>
+        <p>However after moving to NYC from Chicago and San Francisco, we missed our teams. Sure we could catch the games on TV, or at some nearby sports bar, but we really missed the atmosphere. There is nothing like cheering with your friends and like-minded fans around you.</p>
+
+        <p>That’s why we created Fannetic. To share the pain and the glory, and have a great time along the way. We are recreating the stadium effect by connecting all types of sports fans, so let us know if you have an event that you need to see with your fellow fans.</p>
+    </div>
+  </div>    
 
     <%= javascript_include_tag "application" %>
   </body>

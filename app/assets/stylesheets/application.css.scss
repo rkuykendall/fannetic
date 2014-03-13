@@ -11,3 +11,56 @@
  *= require_self
  *= require_tree .
  */
+@import "foundation_and_overrides";
+
+#logo  {
+  display: block;
+  margin: 15px 0;
+}
+
+#nav {
+  background-color: $topbar-bg;
+}
+
+.pricing-table a:link .cta-button h3,
+.pricing-table a:hover .cta-button h3,
+.pricing-table a:active .cta-button h3,
+.pricing-table a:visited .cta-button h3 {
+  color: $price-cta-color;
+  text-shadow: rgba(0,0,0,0.2);
+}
+
+#footer{
+  padding: 30px inherit;  
+  
+  h2 {
+    color: white;    
+  }
+  p {
+    color: rgba(255,255,255,0.8);
+  }
+}
+#not-footer {
+  background-color: $body-bg-real;
+  padding-bottom: 20px;
+}
+
+#slogan {
+  background-color: #c0392b;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  margin: 15px inherit;
+  border: 0px solid #9a2e22;
+  border-width: 8px 0 2px 0;
+
+  h2 {
+    color: white;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.4);
+  }
+}
+
+#logo {
+  display: block;
+  margin: 5px inherit;
+}
