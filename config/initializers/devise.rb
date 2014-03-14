@@ -230,8 +230,9 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require "omniauth-facebook"
   # OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? 
-  FACEBOOK_CONFIG = YAML.load_file("#{::Rails.root}/config/secrets.yml")[::Rails.env]
-  config.omniauth :facebook, FACEBOOK_CONFIG['app_id'], FACEBOOK_CONFIG['secret'],
+#  FACEBOOK_CONFIG = YAML.load_file("#{::Rails.root}/config/secrets.yml")[::Rails.env]
+#  config.omniauth :facebook, FACEBOOK_CONFIG['app_id'], FACEBOOK_CONFIG['secret'],
+  config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_SECRET'],
     {:scope => 'email, offline_access, user_hometown, user_education_history', :image_size => {:width=> "500", :height=> "500"} }
     # , :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}} 
   
