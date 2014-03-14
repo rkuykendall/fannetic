@@ -34,7 +34,7 @@ class TicketsController < ApplicationController
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @event.price,
-      :description => 'Ticket '+@ticket.id,
+      :description => 'Ticket '+@ticket.id.to_s,
       :currency    => 'usd'
     )
     
