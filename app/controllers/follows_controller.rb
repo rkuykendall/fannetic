@@ -1,4 +1,6 @@
 class FollowsController < ApplicationController
+  before_filter :authenticate_fan!
+  
   def create
     @follow = Follow.new
     @follow.team_id = params[:team_id]

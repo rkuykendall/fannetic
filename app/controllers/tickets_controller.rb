@@ -1,4 +1,17 @@
 class TicketsController < ApplicationController
+  before_filter :authenticate_fan!, :except => [:index, :show]
+
+  def index
+    @tickets = Ticket.find_all_by_fan_id(params[:fan_id])
+  end
+
+  def show
+    @ticket = Ticket.find(params[:id])
+    @fan = @ticket.fan
+    @event = @ticket.event
+    @team = @event.team
+  end
+  
   def new
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:event_id])
@@ -36,16 +49,5 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-  end
-
-  def index
-    @tickets = Ticket.find_all_by_fan_id(params[:fan_id])
-  end
-
-  def show
-    @ticket = Ticket.find(params[:id])
-    @fan = @ticket.fan
-    @event = @ticket.event
-    @team = @event.team
   end
 end
