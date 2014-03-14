@@ -27,7 +27,7 @@ class TicketsController < ApplicationController
     @ticket.save
 
     customer = Stripe::Customer.create(
-      :email => current_user.email,
+      :email => current_fan.email,
       :card  => params[:stripeToken]
     )
 
