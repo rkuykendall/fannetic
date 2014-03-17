@@ -1,21 +1,25 @@
-<h1>Edit Event</h1>
-<%= form_for :event, url: team_event_path(@team,@event), method: :patch do |f| %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Edit Event</h1>
+    <%= form_for :event, url: team_event_path(@team,@event), method: :patch do |f| %>
 
-	<% if @event.errors.any? %>
-  	<div id="error_explanation">
-  		<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+    	<% if @event.errors.any? %>
+      	<div id="error_explanation">
+      		<h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-  		<ul>
-    		<% @event.errors.full_messages.each do |msg| %>
-    			<li><%= msg %></li>
-    		<% end %>
-  		</ul>
-  	</div>
-	<% end %>
+      		<ul>
+        		<% @event.errors.full_messages.each do |msg| %>
+        			<li><%= msg %></li>
+        		<% end %>
+      		</ul>
+      	</div>
+    	<% end %>
 
-  <%= render :partial => "form", :locals => {:f => f} %>
+      <%= render :partial => "form", :locals => {:f => f} %>
 
-  <div>
-    <%= f.submit %>
+      <div>
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

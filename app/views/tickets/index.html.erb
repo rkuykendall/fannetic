@@ -1,47 +1,24 @@
-<style>
-  .ticket {
-    background-color: #f9f9f9;
-    outline: 1px solid #ddd;
-    padding: 1rem;
-    padding-bottom: 0;
-    margin: 10px 0px;
-    line-height: 1.15rem;
-  }
-  .ticket h1 {
-    color: #f9f9f9;
-    text-shadow: 2px 2px 0px #ccc;
-    font-weight: 900;
-    margin: 0;
-    padding: 0;
-    margin-bottom: 15px;
-  }
-  .ticket h5 {
-    font-weight: 900;
-    border: dashed 2px #ddd;
-    border-width: 2px 0 2px 0;
-    padding: 1rem 0;
-    margin: 1rem;
-  }
-  .ticket .line {
-    margin-bottom: 1rem;
-  }
-  .ticket .button {
-    background-color: transparent;
-    color: #666;
-    font-weight: 900;
-    border: 2px solid #999;
-  } 
-</style>
-
 <div class="row">
   <div class="small-12 columns">
-    <h1>Tickets</h1>
 
     <div class="row">
+      <% if @tickets.size == 0 %>
+        <div class="small-12 columns">
+          <h1>You don't have any tickets yet!</h1>
+          <h3>Why don't you check out our events?</h3>
+          <p><%= link_to 'Browse Events', events_path, :class => 'button' %></p>
+        </div>
+      <% else %>
+      
+      <% end %>
+      
+      
       <% for ticket in @tickets %>
       <% event = ticket.event %>
       <% team = event.team %>
+
         <div class="small-12 medium-6 large-4 columns">
+          <h1><%= @fan.first_name %>'s Tickets</h1>
           <div class="ticket text-center">
             <div class="row">
               <div class="small-12 columns">

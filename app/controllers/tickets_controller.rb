@@ -3,6 +3,7 @@ class TicketsController < ApplicationController
 
   def index
     @tickets = Ticket.find_all_by_fan_id(params[:fan_id])
+    @fan = Fan.find(params[:fan_id])
   end
 
   def show

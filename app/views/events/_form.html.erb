@@ -1,29 +1,53 @@
-  <div>
-    <%= f.label :title %><br />
+<style>
+  .split {
+    display: block;
+    padding-top: 8px;
+  }
+</style>
+<div class="row">
+  <div class="small-12 large-6 columns">
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
 
-  <div>
-    <%= f.label :location %><br />
+  <div class="small-12 large-6 columns">
+    <%= f.label :location %>
     <%= f.text_field :location %>
   </div>
 
-  <div>
-    <%= f.label :price %><br />
+  <div class="small-12 large-6 columns">
+    <%= f.label :price %>
     <%= f.text_field :price  %>
   </div>
-
-  <div>
-    <%= f.label :start %><br />
-    <%= f.datetime_select :start, :ampm => true, :minute_step => 15  %>
-  </div>
-
-  <div>
-    <%= f.label :end %><br />
-    <%= f.datetime_select :end, :ampm => true, :minute_step => 15  %>
-  </div>
-
-  <div>
-    <%= f.label :body %><br />
+  
+  <div class="small-12 large-6 columns">
+    <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
+
+  <div class="small-12 large-6 columns">
+    <%= f.label :start %>
+    <%= f.datetime_select :start,
+      {
+        :ampm => true, 
+        :minute_step => 15, 
+        :datetime_separator => '<div class="small-4 columns"> &nbsp; </div>', 
+        :time_separator => "" 
+      }, {
+        :class => "small-4 datetime columns"
+      } %>
+  </div>
+
+  <div class="small-12 large-6 columns">
+    <%= f.label :end %>
+    <%= f.datetime_select :end,
+      {
+        :ampm => true, 
+        :minute_step => 15, 
+        :datetime_separator => '<div class="small-4 columns"> &nbsp; </div>', 
+        :time_separator => "" 
+      }, {
+        :class => "small-4 datetime columns"
+      } %>
+  </div>
+</div>

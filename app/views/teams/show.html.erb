@@ -1,23 +1,25 @@
-<h1><%= @team.title %></h1>
+<div class="row">
+  <div class="small-12 columns">
+    <%= link_to "Create event", new_team_event_path(@team), :class => 'button right' if current_fan.try(:is_admin?) %>
 
-<h2>Events</h1>
-<ul>
-  <% for event in @events %>
-    <li><%= link_to event.title, team_event_path(@team,event) %>
-  <% end %>
-</ul>
-<%= link_to "Create event", new_team_event_path(@team) %>
+    <h1><%= @team.title %> Events</h1>
 
+    <%= render :partial => "events/pricing", :locals => {:events => @events} %>
 
-<h2>Fans</h2>
-<ul>
-  <% for fan in @fans %>
-    <li><%= fan.first_name %>
-  <% end %>
-</ul>
+    <h2>Fans</h2>
+    <% if @follow != nil %>
+      <%= button_to "Unfollow", team_follow_path(@team,@follow), method: :delete, :class => 'button' %>
+    <% else %>
+      <%= button_to "Follow", team_follows_path(@team), method: :post, :class => 'button' %>
+    <% end %>
+    
+      <ul class="small-block-grid-3 large-block-grid-6">
+        <% for fan in @fans %>
+          <li>
+            <%= image_tag fan.image, :class => 'th radius' %>
+          </li>
+        <% end %>
+      </ul>
 
-<% if @follow != nil %>
-  <%= button_to "Unfollow", team_follow_path(@team,@follow), method: :delete %>
-<% else %>
-  <%= button_to "Follow", team_follows_path(@team), method: :post %>
-<% end %>
+  </div>
+</div>

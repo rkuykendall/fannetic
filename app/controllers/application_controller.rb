@@ -4,10 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def authenticate_admin!
-    if fan_signed_in?
-      if (current_fan.uid == 1517040135)
-        true
-      end
-    end
+    current_fan.try(:is_admin?)
   end
 end

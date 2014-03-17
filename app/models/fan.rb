@@ -45,4 +45,14 @@ class Fan < ActiveRecord::Base
       end
     end
   end
+  
+  
+  def is_admin?
+    if (uid == '1517040135')
+      return true
+    else
+      return false
+    end
+  end
+
 end

@@ -1,11 +1,19 @@
-<h1><%= @event.title %> for <%= link_to @team.title, team_path(@team) %></h1>
+<div class="row">
+  <div class="small-12 columns">
 
-<p>Times: <%= @event.start %> - <%= @event.end %></p>
+    <h1><%= link_to @team.title, team_path(@team) %> &mdash; <%= @event.title %></h1>
 
-<p>Location: <%= @event.location %></p>
+    <ul>
+      <li><strong>Times:</strong> <%= @event.start.to_s(:short) %> &mdash; <%= @event.end.to_s(:short) %></li>
+      <li>Location: <%= @event.location %></li>
+    </ul>
+    
+    <p><%= @event.body %></p>
 
-<p>Body: <%= @event.body %></p>
-
-<p><%= link_to "Purchase ticket", new_team_event_ticket_path(@team,@event) %></p>
-
-<p><%= link_to "Edit", edit_team_event_path(@team,@event) %></p>
+    <p>
+      <%= link_to "Purchase ticket", new_team_event_ticket_path(@team,@event), :class => 'button' %>
+      <%= link_to "Edit Event", edit_team_event_path(@team,@event), :class => 'button' if current_fan.try(:is_admin?) %>
+    </p>
+    
+  </div>
+</div>

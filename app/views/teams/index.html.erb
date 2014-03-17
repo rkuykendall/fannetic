@@ -1,10 +1,15 @@
-<h1>Teams</h1>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Teams</h1>
 
-<ul>
-  <% for team in @teams %>
-    <li><%= link_to team.title, :action => "show", :id => team %>
-  <% end %>
-</ul>
+    <ul>
+      <% for team in @teams %>
+        <li><%= link_to team.title, :action => "show", :id => team %>
+      <% end %>
+    </ul>
 
 
-<%= link_to "Create team", new_team_path %>
+    <%= link_to "Add new team", new_team_path, :class => 'button' if current_fan.try(:is_admin?) %>
+    
+  </div>
+</div>

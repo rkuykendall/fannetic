@@ -1,27 +1,25 @@
-
-
 <!--<div id="slogan" class="twelve columns">
   <h2>Watch the game wherever you are, <br />with fans of your favorite team.</h2>
+
+  <h2>Watch games with other fans, wherever you are.</h2>
+
 </div>-->
 
-<div id="slogan" class="twelve columns">
-  <h2>Watch games with other fans, wherever you are.</h2>
+<div id="slogan">
+  <h2>Tickets to fantastic NYC watch parties for your favorite team.</h2>  
 </div>
 
+<div id="intro">
   <div class="row">
-    <% @events.each.with_index do |event,index| %>
-      <div class="event small-12 medium-6 large-4 columns">
-        <ul class="pricing-table">
-          <li class="title"><%= event.team.title %></li>
-          <li class="description"><%= event.title %> on <%= event.start.strftime("%B #{event.start.day.ordinalize}") %></li>
-          <li class="bullet-item">
-            From <strong><%= event.start.to_s(:time) %></strong> to <strong><%= event.end.to_s(:time) %></strong>
-          </li>
-          <li class="bullet-item">You get <strong>open bar during first half</strong></li>
-          <li class="bullet-item">Hosted by <strong><%= event.location %></strong></li>
-          <li class="price"><%= number_to_currency(event.price/100) %></li>
-          <a href="<%= new_team_event_ticket_path(event.team,event) %>"><li class="cta-button"><h3>Get Tickets</h3></li></a>
-        </ul>
-      </div>
-    <% end %>
+    <div class="small-12 medium-6 columns">
+      <h3>We bring the stadium.</h3>
+      <p>Cheering for your team surrounded by friends and like-minded fans is an incredible experience. Don't settle for just a bar with the game on.</p>
+    </div>
+    <div class="small-12 medium-6 columns">
+      <h3>You bring your friends.</h3>
+      <p>Know any other die-hard fans in the city? Invite them to an event you're attending, and get rewarded with like free tickets.</p>
+    </div>
   </div>
+</div>
+
+<%= render :partial => "pricing", :locals => {:events => @events} %>
