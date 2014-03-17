@@ -3,8 +3,13 @@ class EventsController < ApplicationController
   before_filter :authenticate_admin!, :only =>  [:index, :show]
   
   def index
-    @events = Event.find(:all)
     @teams = Team.find(:all)
+    @events = Event.find(:all)
+#     for event in @events do
+#       if current_fan in event.fans
+#         flash[:notice] = "True"
+#       end
+#     end
   end
 
   def show

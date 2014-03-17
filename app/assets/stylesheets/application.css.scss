@@ -13,6 +13,9 @@
  */
 @import "foundation_and_overrides";
 
+// Colors:
+// http://www.colourlovers.com/palette/3159238/Mundo
+
 #logo  {
   display: block;
   margin: 15px 0;
@@ -22,12 +25,18 @@
   background-color: $topbar-bg;
 }
 
+.pricing-table.purchased .cta-button {
+  /* background-color: #27ae60; */
+  background-color: #333;
+}
+
 .pricing-table a:link .cta-button h3,
 .pricing-table a:hover .cta-button h3,
 .pricing-table a:active .cta-button h3,
 .pricing-table a:visited .cta-button h3 {
   color: $price-cta-color;
   text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+  margin: 0.5rem;
 }
 
 #footer{
@@ -39,6 +48,9 @@
   p {
     color: rgba(255,255,255,0.65);
   }
+  a {
+    color: white;
+  }
 }
 #not-footer {
   background-color: $body-bg-real;
@@ -47,6 +59,7 @@
 
 #slogan {
   background-color: #c0392b;
+  background-color: #ba2e00;
   color: white;
   text-align: center;
   padding: 30px 15px;

@@ -1,7 +1,7 @@
   <div class="row">
     <% events.each.with_index do |event,index| %>
       <div class="event small-12 medium-6 large-4 columns">
-        <ul class="pricing-table">
+        <ul class="pricing-table <%= 'purchased' if event.fans.include? current_fan %>">
           <li class="title"><%= event.team.title %></li>
           <li class="description"><%= event.title %> on <%= event.start.strftime("%B #{event.start.day.ordinalize}") %></li>
           <li class="bullet-item">
@@ -10,7 +10,12 @@
           <li class="bullet-item">You get <strong>open bar during first half</strong></li>
           <li class="bullet-item">Hosted by <strong><%= event.location %></strong></li>
           <li class="price"><%= number_to_currency(event.price/100) %></li>
-          <a href="<%= new_team_event_ticket_path(event.team,event) %>"><li class="cta-button"><h3>Get Tickets</h3></li></a>
+          <% if event.fans.include? current_fan %>
+            <a href="<%= new_team_event_ticket_path(event.team,event) %>"><li class="cta-button"><h3>View Tickets</h3></li></a>
+          <% else %>
+            <a href="<%= new_team_event_ticket_path(event.team,event) %>"><li class="cta-button"><h3>Get Tickets</h3></li></a>
+          <% end %>
+          <%  %>
         </ul>
       </div>
     <% end %>
