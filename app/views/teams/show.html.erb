@@ -1,25 +1,32 @@
 <div class="row">
-  <div class="small-12 columns">
-    <%= link_to "Create event", new_team_event_path(@team), :class => 'button right' if current_fan.try(:is_admin?) %>
-
+  <div class="small-12 large-8 columns">
     <h1><%= @team.title %> Events</h1>
 
-    <%= render :partial => "events/pricing", :locals => {:events => @events} %>
+    <ul class="small-block-grid-1 large-block-grid-2">
+      <% @events.each.with_index do |event,index| %>
+        <li><%= render :partial => "events/pricing", :locals => {:event => event} %>
+      <% end %>
+    </ul>
 
-    <h2>Fans</h2>
-    <% if @follow != nil %>
-      <%= button_to "Unfollow", team_follow_path(@team,@follow), method: :delete, :class => 'button' %>
+    <%= link_to "Create new event", new_team_event_path(@team), :class => 'button' if current_fan.try(:is_admin?) %>
+  </div>
+
+  <div class="small-12 large-4 columns">
+    <h1>Fans</h1>
+    <% if @teamow != nil %>
+      <%= button_to "Unfollow "+@team.title, team_follow_path(@team,@follow), method: :delete, :class => 'button' %>
     <% else %>
-      <%= button_to "Follow", team_follows_path(@team), method: :post, :class => 'button' %>
+      <%= button_to "Follow "+@team.title, team_follows_path(@team), method: :post, :class => 'button' %>
     <% end %>
     
-      <ul class="small-block-grid-3 large-block-grid-6">
+    
+      <ul class="small-block-grid-3">
         <% for fan in @fans %>
           <li>
             <%= image_tag fan.image, :class => 'th radius' %>
           </li>
         <% end %>
       </ul>
-
   </div>
+
 </div>

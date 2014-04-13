@@ -4,11 +4,12 @@
     <h1><%= link_to @team.title, team_path(@team) %> &mdash; <%= @event.title %></h1>
 
     <ul>
-      <li><strong>Times:</strong> <%= @event.start.to_s(:short) %> &mdash; <%= @event.end.to_s(:short) %></li>
-      <li>Location: <%= @event.location %></li>
+      <li><strong>Times:</strong> <%= @event.start.to_s(:short) %> &mdash; <%= @event.end.to_s(:short) %>
+      <li><strong>Location:</strong> <%= @event.location %>
+      <li><strong>Body:</strong> <%= @event.body %>
+      <li><strong>Price:</strong> <%= number_to_currency(@event.price/100) %>
     </ul>
     
-    <p><%= @event.body %></p>
 
     <p>
       <%= link_to "Purchase ticket", new_team_event_ticket_path(@team,@event), :class => 'button' %>

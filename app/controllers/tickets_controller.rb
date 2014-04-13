@@ -2,8 +2,16 @@ class TicketsController < ApplicationController
   before_filter :authenticate_fan!, :except => [:index, :show]
 
   def index
-    @tickets = Ticket.find_all_by_fan_id(params[:fan_id])
-    @fan = Fan.find(params[:fan_id])
+    if params[:fan_id]
+      # /fan/1/tickets
+      @fan = Fan.find(params[:fan_id])
+      @tickets = Ticket.find_all_by_fan_id(@fan)
+    else
+      # event/1/tickets
+      @fan = current_fan
+      @event = Event.find(params[:event_id])
+      @tickets = Ticket.find_all_by_fan_id_and_event_id(@fan,@event)
+    end    
   end
 
   def show

@@ -5,21 +5,30 @@
 
 </div>-->
 
+<div id="wrap">
 <div id="slogan">
-  <h2>Tickets to fantastic NYC watch parties for your favorite team.</h2>  
+  <!--<h2>Tickets to fantastic NYC watch parties for your favorite team.</h2>-->
+  <!--<h1>Game watch events in NYC, for your favorite team.</h1>--> 
+  <h1>Fannetic hosts watch events for your favorite team.</h1>  
+</div>
 </div>
 
 <div id="intro">
   <div class="row">
     <div class="small-12 medium-6 columns">
-      <h3>We bring the stadium.</h3>
-      <p>Cheering for your team surrounded by friends and like-minded fans is an incredible experience. Don't settle for just a bar with the game on.</p>
+      <h3>Freebies and specials included.</h3>
+      <p>We've locked down the best game watch venues in the heart of Manhattan for exclusive viewing experiences with great deals.</p>
     </div>
     <div class="small-12 medium-6 columns">
-      <h3>You bring your friends.</h3>
-      <p>Know any other die-hard fans in the city? Invite them to an event you're attending, and get rewarded with like free tickets.</p>
-    </div>
+      <h3>Plus rewards for inviting friends.</h3>
+      <p>Cheering for your favorite team surrounded by friends and fans is an incredible experience. Fill the bar with fans and support your team.</div>
   </div>
 </div>
 
-<%= render :partial => "pricing", :locals => {:events => @events} %>
+<div class="row">
+  <% @events.each.with_index do |event,index| %>
+    <div class="event small-12 medium-6 large-4 columns">
+      <%= render :partial => "pricing", :locals => {:event => event} %>
+    </div>
+  <% end %>
+</div>

@@ -57,18 +57,30 @@
   padding-bottom: 20px;
 }
 
+
+#wrap {
+  // background: url(http://cache2.asset-cache.net/gc/456055277-american-football-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=9lVLvZZUudAcDBPnt7YVa4io%2fGw38WJf4QvNXVvDwhLQEn53aJgfrMNL16QzQTmE) no-repeat center center;
+  // background-size: 100% auto;
+}
 #slogan {
-  background-color: #c0392b;
+  // background-color: #c0392b;
   background-color: #ba2e00;
+
+  // background-color: rgba(0,0,0,0.2);
   color: white;
   text-align: center;
-  padding: 30px 15px;
-  border: 0px solid #9a2e22;
+  border: 0px solid rgba(0,0,0,0.2);
   border-width: 8px 0 2px 0;
+  padding: 30px 15px;
+  // padding: 50px 15px;
 
-  h2 {
+  h1 {
+    // display: inline-block;
+    // padding: 5px;
+    // background-color: rgba(0,0,0,0.6);
+    //font-weight: 600;
     color: white;
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.4);
+    text-shadow: 2px 3px 0px rgba(0,0,0,0.4);
   }
   h3,
   h3 a {
@@ -83,6 +95,8 @@
   margin-bottom: 2rem;
   h3 {
     font-weight: 600;
+    color: black;
+    text-shadow: 1px 1px 0px white;
   }
 }
 
