@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309000010) do
+ActiveRecord::Schema.define(version: 20140413233815) do
 
   create_table "events", force: true do |t|
     t.string   "title"
@@ -22,10 +22,18 @@ ActiveRecord::Schema.define(version: 20140309000010) do
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "price"
+    t.integer  "purchase_limit"
+    t.string   "host_address"
+    t.string   "host_website"
+    t.boolean  "published"
   end
 
   add_index "events", ["team_id"], name: "index_events_on_team_id"
+
+  create_table "events_perks", id: false, force: true do |t|
+    t.integer "event_id"
+    t.integer "perk_id"
+  end
 
   create_table "fans", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -71,6 +79,14 @@ ActiveRecord::Schema.define(version: 20140309000010) do
   add_index "follows", ["fan_id"], name: "index_follows_on_fan_id"
   add_index "follows", ["team_id"], name: "index_follows_on_team_id"
 
+  create_table "perks", force: true do |t|
+    t.string   "title"
+    t.string   "body"
+    t.integer  "tickets_required"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teams", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
@@ -79,12 +95,25 @@ ActiveRecord::Schema.define(version: 20140309000010) do
 
   create_table "tickets", force: true do |t|
     t.integer  "fan_id"
-    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "count"
+    t.integer  "referral_id"
+  end
+
+  add_index "tickets", ["fan_id"], name: "index_tickets_on_fan_id"
+
+  create_table "tiers", force: true do |t|
+    t.integer  "price"
+    t.datetime "deadline"
+    t.integer  "purchase_limit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "tickets", ["event_id"], name: "index_tickets_on_event_id"
-  add_index "tickets", ["fan_id"], name: "index_tickets_on_fan_id"
+  create_table "tiers_perks", id: false, force: true do |t|
+    t.integer "tier_id"
+    t.integer "perk_id"
+  end
 
 end

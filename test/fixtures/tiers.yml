@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 1
+  deadline: 2014-04-13 19:18:41
+  purchase_limit: 1
+
+two:
+  price: 1
+  deadline: 2014-04-13 19:18:41
+  purchase_limit: 1
