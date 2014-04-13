@@ -2,44 +2,47 @@
   <div class="small-12 columns">
 
     <div class="row">
+      <div class="small-12 columns">
+        <h1><%= @fan.first_name %>'s Tickets</h1>
+      </div>
+    </div>
+
+    <div class="row">
       <% if @tickets.size == 0 %>
         <div class="small-12 columns">
           <h1>You don't have any tickets yet!</h1>
           <h3>Why don't you check out our events?</h3>
           <p><%= link_to 'Browse Events', events_path, :class => 'button' %></p>
         </div>
-      <% else %>
-      
-      <% end %>
-      
-      
-      <% for ticket in @tickets %>
-      <% event = ticket.event %>
-      <% team = event.team %>
+      <% else %>      
+        <% for ticket in @tickets %>
+          <% event = ticket.event %>
+          <% team = event.team %>
 
-        <div class="small-12 medium-6 large-4 columns">
-          <h1><%= @fan.first_name %>'s Tickets</h1>
-          <div class="ticket text-center">
-            <div class="row">
-              <div class="small-12 columns">
-                <h1>ADMIT 1</h1>
-                <h5><%= event.team.title %>
-                <%= event.title %></h5>
+
+          <div class="small-12 medium-6 large-4 columns">
+            <div class="ticket text-center">
+              <div class="row">
+                <div class="small-12 columns">
+                  <h1>ADMIT 1</h1>
+                  <h5><%= event.team.title %>
+                  <%= event.title %></h5>
+                </div>
+                <div class="small-12 columns line">
+                  <%= event.start.strftime("%B #{event.start.day.ordinalize}") %>
+                  from <strong><%= event.start.to_s(:time) %></strong>
+                  to <strong><%= event.end.to_s(:time) %></strong>
+                </div>
+                <div class="small-12 columns line">Hosted by <strong><%= event.location %></strong></div>
+                <div class="small-12 columns line"><strong>Open bar during first half</strong></div>
+                <!--
+                  <div class="small-12 columns"><%= link_to 'View Ticket', team_event_ticket_path(team,event,ticket), :class => 'button expand' %></div>
+                -->
               </div>
-              <div class="small-12 columns line">
-                <%= event.start.strftime("%B #{event.start.day.ordinalize}") %>
-                from <strong><%= event.start.to_s(:time) %></strong>
-                to <strong><%= event.end.to_s(:time) %></strong>
-              </div>
-              <div class="small-12 columns line">Hosted by <strong><%= event.location %></strong></div>
-              <div class="small-12 columns line"><strong>Open bar during first half</strong></div>
-              <!--
-                <div class="small-12 columns"><%= link_to 'View Ticket', team_event_ticket_path(team,event,ticket), :class => 'button expand' %></div>
-              -->
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      <% end %>  
     </div>
   </div>
 </div>
