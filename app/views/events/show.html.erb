@@ -7,7 +7,6 @@
       <li><strong>Times:</strong> <%= @event.start.to_s(:short) %> &mdash; <%= @event.end.to_s(:short) %>
       <li><strong>Location:</strong> <%= @event.location %>
       <li><strong>Body:</strong> <%= @event.body %>
-      <li><strong>Price:</strong> <%= number_to_currency(@event.price/100) %>
     </ul>
     
 

@@ -1,6 +1,7 @@
 class Fan < ActiveRecord::Base
   has_many :teams, :through => :follows
   has_many :events, :through => :tickets
+  has_many :tickets
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

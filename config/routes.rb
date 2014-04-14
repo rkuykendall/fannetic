@@ -15,6 +15,7 @@ Fannetic::Application.routes.draw do
     resources :follows, only: [:create, :destroy]
     
     resources :events do
+      resources :tiers
       resources :tickets
     end
   end

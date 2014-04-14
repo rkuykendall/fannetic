@@ -1,4 +1,5 @@
-        <ul class="pricing-table <%= 'purchased' if event.fans.include? current_fan %>">
+
+        <ul class="pricing-table <%= 'purchased' if event.tickets.include? current_fan.tickets %>">
           <li class="title"><%= event.team.title %></li>
           <li class="description"><%= event.title %> on <%= event.start.strftime("%B #{event.start.day.ordinalize}") %></li>
           <li class="bullet-item">
@@ -6,8 +7,8 @@
           </li>
           <li class="bullet-item">You get <strong>open bar during first half</strong></li>
           <li class="bullet-item">Hosted by <strong><%= event.location %></strong></li>
-          <li class="price"><%= number_to_currency(event.price/100) %></li>
-          <% if event.fans.include? current_fan %>
+          <!-- li class="price"> number_to_currency(event.tiers[0].price/100) </li -->
+          <% if event.tickets.include? current_fan.tickets %>
             <a href="<%= team_event_tickets_path(event.team, event) %>"><li class="cta-button"><h3>View Tickets</h3></li></a>
           <% else %>
             <a href="<%= new_team_event_ticket_path(event.team,event) %>"><li class="cta-button"><h3>Get Tickets</h3></li></a>

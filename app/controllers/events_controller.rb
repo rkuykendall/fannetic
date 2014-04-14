@@ -24,7 +24,7 @@ class EventsController < ApplicationController
   
   def create
     @team = Team.find(params[:team_id])
-    @event = Event.new(params[:event].permit(:title, :location, :start, :end, :body, :price))
+    @event = Event.new(params[:event].permit(:title, :location, :start, :end, :body))
     @event.team_id = @team.id
     @event.save
     redirect_to team_event_path(@team,@event)
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   	@event = Event.find(params[:id])
     @team = @event.team
   
-  	if @event.update(params[:event].permit(:title, :location, :start, :end, :body, :price))
+  	if @event.update(params[:event].permit(:title, :location, :start, :end, :body))
   		redirect_to team_event_path(@team,@event)
   	else
   		render 'edit'

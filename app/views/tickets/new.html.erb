@@ -3,14 +3,23 @@
     <h1>New Ticket</h1>
     <h3 class="subheader"><%= @event.team.title %> &mdash; <%= @event.title %></h3>
 
-    <%= form_tag team_event_tickets_path(@team,@event) do %>
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-description="Ticket for <%= @event.title %>"
-              data-amount="<%= @event.price %>"
-              data-name="Fannetic"
-              data-label="Pay <%= number_to_currency(@event.price/100) %> with Card"
-              data-email="<%= current_fan.email %>"></script>
+    <% for tier in @event.tiers %>
+
+      <%= form_tag team_event_tickets_path(@team,@event) do %>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Ticket for <%= @event.title %>"
+                data-amount="<%= @event.price %>"
+                data-name="Fannetic"
+                data-label="Pay <%= number_to_currency(@event.price/100) %> with Card"
+                data-email="<%= current_fan.email %>"></script>
+      <% end %>
+
     <% end %>
+
+    <% if current_fan.is_admin? %>
+      <%= link_to "Add Tier", new_team_event_tier_path, :class => 'button' %>
+    <% end %>
+
   </div>
 </div>
