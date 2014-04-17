@@ -1,27 +1,27 @@
-class TiersController < ApplicationController
+class PerksController < ApplicationController
   before_filter :authenticate_admin!
 
   def new
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:event_id])
-    @tier = Tier.new
+    @perk = Perk.new
   end
 
   def create
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:event_id])
-    @tier = Tier.new(params[:tier].permit(:price, :deadline, :purchase_limit))
-    @event.tiers << @tier
-    @tier.save
+    @perk = Perk.new(params[:perk].permit(:title, :body, :tickets_required))
+    @event.perks << @perk
+    @perk.save
     redirect_to team_event_path(@team, @event)
   end
 
   def update
-    @tier = Tier.find(params[:id])
+    @perk = Perk.find(params[:id])
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:event_id])
     
-    if @tier.update(params[:tier].permit(:price, :deadline, :purchase_limit))
+    if @perk.update(params[:perk].permit(:title, :body, :tickets_required))
       redirect_to team_event_path(@team, @event)
     else
       render 'edit'
@@ -29,14 +29,14 @@ class TiersController < ApplicationController
   end
 
   def edit
-    @tier = Tier.find(params[:id])
+    @perk = Perk.find(params[:id])
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:event_id])
   end
 
   def destroy
-    @tier = Tier.find(params[:id])
-    @tier.destroy
+    @perk = Perk.find(params[:id])
+    @perk.destroy
     
     @event = Event.find(params[:event_id])
 

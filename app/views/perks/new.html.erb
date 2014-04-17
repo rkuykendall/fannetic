@@ -1,7 +1,7 @@
 <div class="row">
   <div class="small-12 columns">
-    <h1>New Tier</h1>
-    <%= form_for :tier, url: team_event_tiers_path(@team, @event) do |f| %>
+    <h1>New Perk</h1>
+    <%= form_for :perk, url: team_event_perks_path(@team, @event) do |f| %>
   
       <%= render :partial => "form", :locals => {:f => f} %>
 

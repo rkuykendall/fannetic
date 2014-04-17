@@ -4,21 +4,38 @@
     <h3 class="subheader"><%= @event.team.title %> &mdash; <%= @event.title %></h3>
 
     <% for tier in @event.tiers %>
+      Price:<%= tier.price %>
+      Deadline:<%= tier.deadline.strftime('%B %e at %l:%M %p') %>
+      Limit:<%= tier.purchase_limit %>
+      Remaining:<%= @remaining[tier.id] %>
+
 
       <%= form_tag team_event_tickets_path(@team,@event) do %>
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-description="Ticket for <%= @event.title %>"
-                data-amount="<%= @event.price %>"
+                data-description="Ticket for <%= @event.title %>, tier <%= tier.id %>"
+                data-amount="<%= tier.price %>"
                 data-name="Fannetic"
-                data-label="Pay <%= number_to_currency(@event.price/100) %> with Card"
+                data-label="Pay <%= number_to_currency(tier.price/100) %> with Card"
                 data-email="<%= current_fan.email %>"></script>
       <% end %>
-
+      <%= link_to "Edit Tier", edit_team_event_tier_path(@team,@event,tier), :class => 'button' %>
     <% end %>
+    
+    <h1>Perks</h1>
+    
+    <ul>
+      <% for perk in @event.perks %>
+      <li>
+        <strong><%= perk.title %></strong> for <strong><%= perk.tickets_required %></strong> tickets.
+        <p><%= perk.body %></p>
+      </li>
+      <% end %>
+    </ul>
 
     <% if current_fan.is_admin? %>
       <%= link_to "Add Tier", new_team_event_tier_path, :class => 'button' %>
+      <%= link_to "Add Perk", new_team_event_perk_path, :class => 'button' %>
     <% end %>
 
   </div>

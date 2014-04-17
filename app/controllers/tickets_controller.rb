@@ -24,6 +24,12 @@ class TicketsController < ApplicationController
   def new
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:event_id])
+    @remaining = []
+    for tier in @event.tiers
+      if tier.tickets.count != nil && tier.purchase_limit != nil
+        @remaining[tier.id] = tier.purchase_limit - tier.tickets.count
+      end
+    end
   end
 
   def create

@@ -1,4 +1,5 @@
 Fannetic::Application.routes.draw do
+
   # Authentication
   devise_for :fans, :controllers => { :omniauth_callbacks => "fans/omniauth_callbacks" }
   devise_scope :fan do
@@ -15,8 +16,9 @@ Fannetic::Application.routes.draw do
     resources :follows, only: [:create, :destroy]
     
     resources :events do
-      resources :tiers
       resources :tickets
+      resources :tiers
+      resources :perks
     end
   end
 

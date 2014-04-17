@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414000448) do
+ActiveRecord::Schema.define(version: 20140417033359) do
 
   create_table "events", force: true do |t|
     t.string   "title"
@@ -99,9 +99,11 @@ ActiveRecord::Schema.define(version: 20140414000448) do
     t.datetime "updated_at"
     t.integer  "count"
     t.integer  "referral_id"
+    t.integer  "tier_id"
   end
 
   add_index "tickets", ["fan_id"], name: "index_tickets_on_fan_id"
+  add_index "tickets", ["tier_id"], name: "index_tickets_on_tier_id"
 
   create_table "tiers", force: true do |t|
     t.integer  "price"
