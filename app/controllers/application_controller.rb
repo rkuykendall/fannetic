@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def authenticate_admin!
-    current_fan.try(:is_admin?)
+    authenticate_fan! && current_fan.try(:is_admin?)
   end
 end

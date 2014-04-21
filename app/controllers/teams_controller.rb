@@ -20,7 +20,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(params[:team].permit(:title))
     @team.save
-    redirect_to @team
+    redirect_to admins_path
   end
   
   def edit
@@ -31,7 +31,7 @@ class TeamsController < ApplicationController
   	@team = Team.find(params[:id])
   
   	if @team.update(params[:team].permit(:title))
-  		redirect_to @team
+      redirect_to admins_path
   	else
   		render 'edit'
   	end
@@ -41,7 +41,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @team.destroy
 
-    redirect_to teams_path
+    redirect_to admins_path
   end
 
 end

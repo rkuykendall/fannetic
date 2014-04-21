@@ -7,8 +7,6 @@
         <li><%= render :partial => "events/pricing", :locals => {:event => event} %>
       <% end %>
     </ul>
-
-    <%= link_to "Create new event", new_team_event_path(@team), :class => 'button' if current_fan.try(:is_admin?) %>
   </div>
 
   <div class="small-12 large-4 columns">

@@ -13,7 +13,7 @@ class PerksController < ApplicationController
     @perk = Perk.new(params[:perk].permit(:title, :body, :tickets_required))
     @event.perks << @perk
     @perk.save
-    redirect_to team_event_path(@team, @event)
+    redirect_to admins_path
   end
 
   def update
@@ -22,7 +22,7 @@ class PerksController < ApplicationController
     @event = Event.find(params[:event_id])
     
     if @perk.update(params[:perk].permit(:title, :body, :tickets_required))
-      redirect_to team_event_path(@team, @event)
+      redirect_to admins_path
     else
       render 'edit'
     end
@@ -40,6 +40,6 @@ class PerksController < ApplicationController
     
     @event = Event.find(params[:event_id])
 
-    redirect_to team_event_path(@event)
+    redirect_to admins_path
   end
 end

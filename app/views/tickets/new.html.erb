@@ -19,7 +19,6 @@
                 data-label="Pay <%= number_to_currency(tier.price/100) %> with Card"
                 data-email="<%= current_fan.email %>"></script>
       <% end %>
-      <%= link_to "Edit Tier", edit_team_event_tier_path(@team,@event,tier), :class => 'button' %>
     <% end %>
     
     <h1>Perks</h1>
@@ -32,11 +31,6 @@
       </li>
       <% end %>
     </ul>
-
-    <% if current_fan.is_admin? %>
-      <%= link_to "Add Tier", new_team_event_tier_path, :class => 'button' %>
-      <%= link_to "Add Perk", new_team_event_perk_path, :class => 'button' %>
-    <% end %>
 
   </div>
 </div>

@@ -13,7 +13,7 @@ class TiersController < ApplicationController
     @tier = Tier.new(params[:tier].permit(:price, :deadline, :purchase_limit))
     @event.tiers << @tier
     @tier.save
-    redirect_to team_event_path(@team, @event)
+    redirect_to admins_path
   end
 
   def update
@@ -22,7 +22,7 @@ class TiersController < ApplicationController
     @event = Event.find(params[:event_id])
     
     if @tier.update(params[:tier].permit(:price, :deadline, :purchase_limit))
-      redirect_to team_event_path(@team, @event)
+      redirect_to admins_path
     else
       render 'edit'
     end
@@ -40,6 +40,6 @@ class TiersController < ApplicationController
     
     @event = Event.find(params[:event_id])
 
-    redirect_to team_event_path(@event)
+    redirect_to admins_path
   end
 end

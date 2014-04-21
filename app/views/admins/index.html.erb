@@ -2,28 +2,65 @@
   <div class="small-12 columns">
     <h1>Manage Fannetic</h1>
     
-    <ul>
       <% for team in @teams %>
-        <li><%= link_to team.title, team_path(team) %>
-          
-          <ul>
-            <% for event in team.events %>
-              <li><%= link_to event.title, team_event_path(team, event) %>
-                
-              <ul>
-                <% for tier in event.tiers %>
-                  <li><%= link_to tier.title, team_event_tier_path(team, event, tier) %>
-                <% end %>
-                <li><%= link_to "Add new tier", new_team_event_tier_path(team, event) %>
-              </ul>
-                
-                
-            <% end %>
-            <li><%= link_to "Add new event", new_team_event_path(team) %>
-          </ul>
-          
+        <div class="row">
+          <div class="large-3 columns">
+            <h2>
+              <%= link_to team.title, team_path(team) %>
+            </h2>
+            
+            <ul>
+              <li><strong>Fans:</strong> <%= team.fans.count %>
+            </ul>            
+            <p>
+              <%= link_to 'Edit', edit_team_path(team), :class => 'button small' %>
+              <%= link_to "New event", new_team_event_path(team), :class => 'button small' %>
+              <%= link_to 'Delete team', team_path(team), :confirm => "Are you sure you want to pernamently delete the team '#{team.title}'?", :method => :delete, :class => 'button small alert' %>
+            </p>
+          </div>
+          <div class="large-9 columns">
+              <% for event in team.events %>
+                <div class="admin-event" style="border: 5px solid #eee; margin: 10px 0; padding: 15px">
+                <h3 style="padding-bottom: 2px; border-bottom: 2px solid #ccc; margin-top: 0px">
+                  <%= link_to event.title, team_event_path(team, event) %>
+
+                  <%= link_to 'Edit', edit_team_event_path(team, event), :class => 'button tiny' %>
+                  <%= link_to 'Delete', team_event_path(team, event), :confirm => "Are you sure you want to pernamently delete the event '#{event.title}'?", :method => :delete, :class => 'button tiny alert' %>
+                </h3>
+                <div class="row">                  
+                  <div class="large-6 columns">
+                    <h3>Tiers</h3>
+                    <ul>
+                      <% for tier in event.tiers %>
+                        <li><%= link_to tier.title, team_event_tier_path(team, event, tier) %>
+                          
+                        <%= link_to "Edit", edit_team_event_tier_path(team, event, tier), :class => 'button tiny' %>
+                        
+                        <%= link_to 'Delete', team_event_tier_path(team,event,tier), :confirm => "Are you sure you want to pernamently delete the tier '#{tier.title}'?", :method => :delete, :class => 'button tiny alert' %>
+                      <% end %>
+                    </ul>
+                    <%= link_to "Add new tier", new_team_event_tier_path(team, event), :class => 'button small' %>
+                  </div>
+                  
+                  <div class="large-6 columns">
+                    <h3>Event Perks</h3>
+                    <ul>
+                      <% for perk in event.perks %>
+                        <li><%= link_to perk.title, team_event_perk_path(team, event, perk) %>
+                          
+                        <%= link_to "Edit", edit_team_event_perk_path(team, event, perk), :class => 'button tiny' %>
+
+                        <%= link_to 'Delete', team_event_perk_path(team,event,perk), :confirm => "Are you sure you want to pernamently delete the perk '#{perk.title}'?", :method => :delete, :class => 'button tiny alert' %>
+                      <% end %>
+                    </ul>
+                    <%= link_to "Add new perk", new_team_event_perk_path(team, event), :class => 'button small' %>
+                  </div>
+                </div>
+                </div>
+              <% end %>
+          </div>
+        </div>
       <% end %>
-      <li><%= link_to "Add new team", new_team_path %>
-    </ul>    
+      <%= link_to "Add new team", new_team_path, :class => 'button' %>
   </div>
 </div>

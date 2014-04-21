@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     @event = Event.new(params[:event].permit(:title, :location, :start, :end, :body))
     @event.team_id = @team.id
     @event.save
-    redirect_to team_event_path(@team,@event)
+    redirect_to admins_path
   end
   
   def edit
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
     @team = @event.team
   
   	if @event.update(params[:event].permit(:title, :location, :start, :end, :body))
-  		redirect_to team_event_path(@team,@event)
+      redirect_to admins_path
   	else
   		render 'edit'
   	end
@@ -50,7 +50,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
 
-    redirect_to events_path
+    redirect_to admins_path
   end
 end
 

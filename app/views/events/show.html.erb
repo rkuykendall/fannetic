@@ -12,7 +12,6 @@
 
     <p>
       <%= link_to "Purchase ticket", new_team_event_ticket_path(@team,@event), :class => 'button' %>
-      <%= link_to "Edit Event", edit_team_event_path(@team,@event), :class => 'button' if current_fan.try(:is_admin?) %>
     </p>
     
   </div>
