@@ -1,11 +1,13 @@
 Fannetic::Application.routes.draw do
 
+  resources :admins
+
   # Authentication
   devise_for :fans, :controllers => { :omniauth_callbacks => "fans/omniauth_callbacks" }
   devise_scope :fan do
      get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
-  
+    
   # fan/1/tickets
   resources :fans, only: [:show] do
     resources :tickets, only: [:index]

@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Manage Fannetic</h1>
+    
+    <ul>
+      <% for team in @teams %>
+        <li><%= link_to team.title, team_path(team) %>
+          
+          <ul>
+            <% for event in team.events %>
+              <li><%= link_to event.title, team_event_path(team, event) %>
+                
+              <ul>
+                <% for tier in event.tiers %>
+                  <li><%= link_to tier.title, team_event_tier_path(team, event, tier) %>
+                <% end %>
+                <li><%= link_to "Add new tier", new_team_event_tier_path(team, event) %>
+              </ul>
+                
+                
+            <% end %>
+            <li><%= link_to "Add new event", new_team_event_path(team) %>
+          </ul>
+          
+      <% end %>
+      <li><%= link_to "Add new team", new_team_path %>
+    </ul>    
+  </div>
+</div>
