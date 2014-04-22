@@ -1,5 +1,5 @@
 class FollowsController < ApplicationController
-  before_filter :authenticate_fan!
+  before_filter :authenticate!
   
   def create
     @follow = Follow.new

@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_fan!, :except => [:index, :show]
-  before_filter :authenticate_admin!, :only =>  [:index, :show]
+  before_filter :authenticate_admin!, :except => [:index, :show]
   
   def index
     @teams = Team.find(:all)

@@ -49,11 +49,7 @@ class Fan < ActiveRecord::Base
   
   
   def is_admin?
-    if ['1517040135','3103485'].include?(uid)
-      return true
-    else
-      return false
-    end
+    ['1517040135','3103485'].include?(uid)
   end
 
 end

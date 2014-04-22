@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_filter :authenticate_fan!, :except => [:index, :show]
+  before_filter :authenticate!, :except => [:index, :show]
 
   def index
     if params[:fan_id]
