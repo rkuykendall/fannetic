@@ -3,34 +3,38 @@
     <h1>New Ticket</h1>
     <h3 class="subheader"><%= @event.team.title %> &mdash; <%= @event.title %></h3>
 
-    <% for tier in @event.tiers %>
-      Price:<%= tier.price %>
-      Deadline:<%= tier.deadline.strftime('%B %e at %l:%M %p') %>
-      Limit:<%= tier.purchase_limit %>
-      Remaining:<%= @remaining[tier.id] %>
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        <% for tier in @event.tiers %>
+          <h2><%= tier.title %></h2>
 
+          <p><strong>Deadline:</strong> <%= tier.deadline.strftime('%B %e at %l:%M %p') %></p>
 
-      <%= form_tag team_event_tickets_path(@team,@event) do %>
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-description="Ticket for <%= @event.title %>, tier <%= tier.id %>"
-                data-amount="<%= tier.price %>"
-                data-name="Fannetic"
-                data-label="Pay <%= number_to_currency(tier.price/100) %> with Card"
-                data-email="<%= current_fan.email %>"></script>
-      <% end %>
-    <% end %>
-    
-    <h1>Perks</h1>
-    
-    <ul>
-      <% for perk in @event.perks %>
-      <li>
-        <strong><%= perk.title %></strong> for <strong><%= perk.tickets_required %></strong> tickets.
-        <p><%= perk.body %></p>
-      </li>
-      <% end %>
-    </ul>
-
+          <%= form_tag team_event_tickets_path(@team,@event) do %>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                    data-description="Ticket for <%= @event.title %>, tier <%= tier.id %>"
+                    data-amount="<%= tier.price %>"
+                    data-name="Fannetic"
+                    data-label="Pay <%= number_to_currency(tier.price/100) %> with Card"
+                    data-email="<%= current_fan.email %>"></script>
+        
+              <%= @remaining[tier.id] %> tickets remaining.
+          <% end %>
+        <% end %>
+      </div>
+      <div class="small-12 large-6 columns">
+        <h1>Perks</h1>
+  
+        <ul>
+          <% for perk in @event.perks %>
+          <li>
+            <strong><%= perk.title %></strong> with purchase of <strong><%= perk.tickets_required %></strong> tickets.
+            <p><%= perk.body %></p>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

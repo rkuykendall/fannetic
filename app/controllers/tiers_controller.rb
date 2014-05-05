@@ -10,7 +10,7 @@ class TiersController < ApplicationController
   def create
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:event_id])
-    @tier = Tier.new(params[:tier].permit(:price, :deadline, :purchase_limit))
+    @tier = Tier.new(params[:tier].permit(:title, :price, :deadline, :purchase_limit))
     @event.tiers << @tier
     @tier.save
     redirect_to admins_path
@@ -21,7 +21,7 @@ class TiersController < ApplicationController
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:event_id])
     
-    if @tier.update(params[:tier].permit(:price, :deadline, :purchase_limit))
+    if @tier.update(params[:tier].permit(:title, :price, :deadline, :purchase_limit))
       redirect_to admins_path
     else
       render 'edit'
